@@ -55,8 +55,8 @@ function App() {
     setMessages(prev => [...prev, newAiMessage])
 
     try {
-    const PROD_URL = 'https://ai-bot-bs546.loca.lt/webhook/ai-chat';
-    const TEST_URL = 'https://ai-bot-bs546.loca.lt/webhook-test/ai-chat';
+    const PROD_URL = 'https://tired-leslie-liverpool-watches.trycloudflare.com/webhook/ai-chat';
+    const TEST_URL = 'https://tired-leslie-liverpool-watches.trycloudflare.com/webhook-test/ai-chat';
 
     let response;
     try {
