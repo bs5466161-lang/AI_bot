@@ -55,8 +55,8 @@ function App() {
     setMessages(prev => [...prev, newAiMessage])
 
     try {
-    const PROD_URL = 'http://localhost:5678/webhook/ai-chat';
-    const TEST_URL = 'http://localhost:5678/webhook-test/ai-chat';
+    const PROD_URL = 'https://ten-bars-listen.loca.lt/webhook/ai-chat';
+    const TEST_URL = 'https://ten-bars-listen.loca.lt/webhook-test/ai-chat';
 
     let response;
     try {
