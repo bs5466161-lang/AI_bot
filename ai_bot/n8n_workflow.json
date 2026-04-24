@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-chat",
+        "responseMode": "lastNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              { "name": "Content-Type", "value": "application/json" },
+              { "name": "Access-Control-Allow-Origin", "value": "*" }
+            ]
+          }
+        }
+      },
+      "id": "webhook-text-only",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "webhookId": "ai-chat"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "prompt": "={{ $json.body.chatInput }}",
+        "options": {}
+      },
+      "id": "gemini-text-only",
+      "name": "Google Gemini",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "output",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "final-text-node",
+      "name": "Final Text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [700, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [ [ { "node": "Google Gemini", "type": "main", "index": 0 } ] ] },
+    "Google Gemini": { "main": [ [ { "node": "Final Text", "type": "main", "index": 0 } ] ] }
+  }
+}
